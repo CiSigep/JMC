@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+	
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextArea?>
+	
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ToDoController">
+	<left>
+		<ListView fx:id="toDoListView" onMouseClicked="#onClickListView">
+			
+		</ListView>
+	</left>
+	<center>
+		<TextArea fx:id="detailsArea"/>
+	</center>
+</BorderPane>
