@@ -3,14 +3,47 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 	
-<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ToDoController">
+<BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ToDoController" fx:id="mainBorderPane">
+	<top>
+		<MenuBar>
+			<Menu text="File">
+				<items>
+					<MenuItem text="New..." onAction="#showNewItemDialog"/>
+					<SeparatorMenuItem/>
+					<MenuItem text="Exit"/>
+				</items>
+			</Menu>
+		</MenuBar> 
+	</top>
 	<left>
-		<ListView fx:id="toDoListView" onMouseClicked="#onClickListView">
+		<ListView fx:id="toDoListView" ><!-- onMouseClicked="#onClickListView"> -->
 			
 		</ListView>
 	</left>
 	<center>
-		<TextArea fx:id="detailsArea"/>
+		<VBox styleClass="whiteBG">
+			<TextArea fx:id="detailsArea" VBox.vgrow="ALWAYS"/>
+			<HBox>
+				<Label text="Due: ">
+					<font>
+						<Font name="Times New Roman bold" size="20"/>
+					</font>
+				</Label>
+				<Label fx:id="deadlineLabel" >
+					<font>
+						<Font name="Times New Roman bold" size="20"/>
+					</font>
+				</Label>
+			</HBox>
+		</VBox> 
 	</center>
 </BorderPane>

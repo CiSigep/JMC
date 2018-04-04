@@ -1,5 +1,8 @@
 package application;
 	
+import java.io.IOException;
+
+import application.model.ToDoData;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -24,5 +27,25 @@ public class Main extends Application {
 	
 	public static void main(String[] args) {
 		launch(args);
+	}
+	
+	@Override
+	public void stop() throws Exception {
+		try {
+			ToDoData.getInstance().saveToDoItems();
+		}
+		catch (IOException ie) {
+			System.out.println(ie.getMessage());
+		}
+		
+	}
+	
+	@Override
+	public void init() throws Exception {
+		try {
+			ToDoData.getInstance().loadToDoItems();
+		}catch (IOException ie) {
+			System.out.println(ie.getMessage());
+		}
 	}
 }
