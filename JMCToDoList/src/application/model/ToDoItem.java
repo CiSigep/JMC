@@ -37,8 +37,8 @@ public class ToDoItem {
 		this.deadline = deadline;
 	}
 	
-	@Override
+/*	@Override
 	public String toString() {
 		return description;
-	}
+	}*/
 }

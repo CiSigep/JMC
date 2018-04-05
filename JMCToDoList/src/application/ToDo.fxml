@@ -11,27 +11,48 @@
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToolBar?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.Tooltip?>
 	
 <BorderPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ToDoController" fx:id="mainBorderPane">
 	<top>
-		<MenuBar>
-			<Menu text="File">
-				<items>
-					<MenuItem text="New..." onAction="#showNewItemDialog"/>
-					<SeparatorMenuItem/>
-					<MenuItem text="Exit"/>
-				</items>
-			</Menu>
-		</MenuBar> 
+		<VBox>
+			<MenuBar>
+				<Menu text="File">
+					<items>
+						<MenuItem text="New..." onAction="#showNewItemDialog"/>
+						<SeparatorMenuItem/>
+						<MenuItem text="Exit"/>
+					</items>
+				</Menu>
+			</MenuBar>
+			<ToolBar>
+				<HBox>
+					<Button onAction="#showNewItemDialog">
+						<tooltip>
+							<Tooltip text="Add a New Item" />
+						</tooltip>
+						<graphic>
+							<ImageView>
+								<Image url="@/toolbarButtonGraphics/general/New24.gif" />
+							</ImageView>
+						</graphic>
+					</Button>
+				</HBox>
+			</ToolBar>
+		</VBox> 
 	</top>
 	<left>
-		<ListView fx:id="toDoListView" ><!-- onMouseClicked="#onClickListView"> -->
+		<ListView fx:id="toDoListView" onKeyPressed="#handleKeyPressed"><!-- onMouseClicked="#onClickListView"> -->
 			
 		</ListView>
 	</left>
 	<center>
 		<VBox styleClass="whiteBG">
-			<TextArea fx:id="detailsArea" VBox.vgrow="ALWAYS"/>
+			<TextArea fx:id="detailsArea" VBox.vgrow="ALWAYS" wrapText="true"/>
 			<HBox>
 				<Label text="Due: ">
 					<font>
