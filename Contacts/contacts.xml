@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<contacts>
+<contact>
+	<first_name>John</first_name>
+	<last_name>Smith</last_name>
+	<phone_number>123-456-7890</phone_number>
+	<notes>New Guy</notes>
+</contact>
+<contact>
+	<first_name>Debra</first_name>
+	<last_name>Cole</last_name>
+	<phone_number>987-654-3210</phone_number>
+	<notes>New Girl</notes>
+</contact>
+<contact>
+	<first_name>James</first_name>
+	<last_name>Brown</last_name>
+	<phone_number>456-789-0123</phone_number>
+	<notes>Test Person</notes>
+</contact>
+<contact>
+	<first_name>Tim</first_name>
+	<last_name>Tim</last_name>
+	<phone_number>187-223-2332</phone_number>
+	<notes>TEST</notes>
+</contact>
+</contacts>

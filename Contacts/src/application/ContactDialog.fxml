@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.DialogPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.TextFormatter?>
+
+<DialogPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.ContactDialogController">
+	<headerText>
+		Fill in the information below.
+	</headerText>
+	<content>
+		<GridPane vgap="10" hgap="10">
+			<Label text="First Name: " GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+			<TextField fx:id="firstNameField" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+			<Label text="Last Name: " GridPane.rowIndex="1" GridPane.columnIndex="0" />
+			<TextField fx:id="lastNameField" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+			<Label text="Phone Number:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+			<TextField fx:id="phoneField" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+			<Label text="Notes:" GridPane.rowIndex="3" GridPane.columnIndex="0" />
+			<TextArea fx:id="notesArea" GridPane.rowIndex="4" GridPane.columnIndex="0" GridPane.columnSpan="2"/>
+		</GridPane>
+	</content>
+</DialogPane>
+
