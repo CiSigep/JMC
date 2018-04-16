@@ -30,15 +30,15 @@ public class ContactData {
     private static final String PHONE_NUMBER = "phone_number";
     private static final String NOTES = "notes";
 
-    private static ContactData instance = new ContactData();
+    //private static ContactData instance = new ContactData();
     
     private ObservableList<Contact> contacts;
-    
+/*    
     public static ContactData getInstance() {
     	return instance;
-    }
+    }*/
 
-    private ContactData() {
+    public ContactData() {
         contacts = FXCollections.observableArrayList();
         
 /*        contacts.add(new Contact("John","Smith", "123-456-7890", "New Guy"));

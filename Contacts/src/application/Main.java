@@ -27,7 +27,7 @@ public class Main extends Application {
 		launch(args);
 	}
 	
-	@Override
+/*	@Override
 	public void stop(){
 		try {
 			ContactData.getInstance().saveContacts();
@@ -35,5 +35,5 @@ public class Main extends Application {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 }

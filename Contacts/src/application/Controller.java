@@ -30,8 +30,10 @@ public class Controller {
 	TableColumn<Contact, String> phoneNumberColumn;
 	TableColumn<Contact, String> notesColumn;
 	
+	private ContactData data = new ContactData();
+	
 	public void initialize() {
-		ContactData.getInstance().loadContacts();
+		data.loadContacts();
 		
 	    firstNameColumn = new TableColumn<>();
 		firstNameColumn.setText("First Name");
@@ -50,7 +52,7 @@ public class Controller {
 		notesColumn.setCellValueFactory(new PropertyValueFactory<>("notes"));
 		
 		contactsTableView.getColumns().addAll(firstNameColumn, lastNameColumn, phoneNumberColumn, notesColumn);
-		contactsTableView.setItems(ContactData.getInstance().getItems());
+		contactsTableView.setItems(data.getItems());
 		contactsTableView.getSelectionModel().selectFirst();
 	}
 	
@@ -76,8 +78,9 @@ public class Controller {
 		if(result.isPresent() && result.get().equals(ButtonType.OK)) {
 			ContactDialogController cdc = fl.getController();
 			Contact c = cdc.processNewResults();
-			ContactData.getInstance().addContact(c);
+			data.addContact(c);
 			contactsTableView.getSelectionModel().select(c);
+			data.saveContacts();
 		}
 	}
 	
@@ -106,6 +109,7 @@ public class Controller {
 		if(result.isPresent() && result.get().equals(ButtonType.OK)) {
 			cdc.processEditResults(c);
 			contactsTableView.getSelectionModel().select(c);
+			data.saveContacts();
 		}
 	}
 	
@@ -118,10 +122,12 @@ public class Controller {
 		a.setTitle("Delete Contact");
 		Optional<ButtonType> result = a.showAndWait();
 		
-		if(result.isPresent() && result.get().equals(ButtonType.OK))
-			ContactData.getInstance().removeContact(c);
+		if(result.isPresent() && result.get().equals(ButtonType.OK)) {
+			data.removeContact(c);
 		
-		contactsTableView.getSelectionModel().selectFirst();
+			contactsTableView.getSelectionModel().selectFirst();
+			data.saveContacts();
+		}
 	}
 	
 	@FXML
