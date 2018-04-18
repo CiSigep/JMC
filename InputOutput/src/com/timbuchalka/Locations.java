@@ -11,18 +11,26 @@ import java.util.*;
 
 //Modified by CiSigep for Challenge
 public class Locations implements Map<Integer, Location> {
-    private static Map<Integer, Location> locations = new HashMap<Integer, Location>();
+    private static Map<Integer, Location> locations = new LinkedHashMap<Integer, Location>();
 
     public static void main(String[] args) throws IOException {
-        try(FileWriter locFile = new FileWriter("locations.txt");
-            FileWriter dirFile = new FileWriter("directions.txt")) {
-            for(Location location : locations.values()) {
+        try(BufferedWriter locBW = new BufferedWriter(new FileWriter("locations.txt"));
+            BufferedWriter dirBW = new BufferedWriter(new FileWriter("directions.txt"))) {
+           /* for(Location location : locations.values()) {
                 locFile.write(location.getLocationID() + "," + location.getDescription() + "\n");
                 for(String direction : location.getExits().keySet()) {
                     dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction) + "\n");
-                }
+                }*/
+        		for(Location location : locations.values()) {
+        			locBW.write(location.getLocationID() + "," + location.getDescription() + "\n");
+        			for(String direction : location.getExits().keySet()) {
+        				if(!direction.equalsIgnoreCase("Q")) {
+        					dirBW.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction) + "\n");
+        				}
+        			}
+        		}
             }
-        }
+//        }
 //        FileWriter locFile = null;
 //        try {
 //            locFile = new FileWriter("locations.txt");
@@ -42,9 +50,9 @@ public class Locations implements Map<Integer, Location> {
 
     	//    ---MODIFICATIONS MADE HERE FOR CHALLENGE START HERE---
         //Scanner scanner = null;
-        try(Scanner scanner = new Scanner(new FileReader("locations_big.txt"))){
+        try(BufferedReader br = new BufferedReader(new FileReader("locations_big.txt"))){
             //scanner = new Scanner(new FileReader("locations.txt"));
-            scanner.useDelimiter(",");
+            /*scanner.useDelimiter(",");
             while(scanner.hasNextLine()) {
                 int loc = scanner.nextInt();
                 scanner.skip(scanner.delimiter());
@@ -52,12 +60,23 @@ public class Locations implements Map<Integer, Location> {
                 System.out.println("Imported loc: " + loc + ": " + description);
                 Map<String, Integer> tempExit = new HashMap<>();
                 locations.put(loc, new Location(loc, description, tempExit));
-            }
+            }*/
+        	String input;
+        	while((input = br.readLine()) != null) {
+        		String[] pieces = input.split(",");
+        		int loc = Integer.parseInt(pieces[0]);
+        		String desc = pieces[1];
+        		Map<String, Integer> tempExit = new HashMap<>();
+        		locations.put(loc, new Location(loc, desc, tempExit));
+        	}
 
         } 
         catch (FileNotFoundException e) {
         	e.printStackTrace();
-        }
+        } catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
         /*catch(IOException e) {
         e.printStackTrace();
     } finally {
