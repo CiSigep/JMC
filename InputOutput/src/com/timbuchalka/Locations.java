@@ -21,6 +21,7 @@ public class Locations implements Map<Integer, Location> {
                 for(String direction : location.getExits().keySet()) {
                     dirFile.write(location.getLocationID() + "," + direction + "," + location.getExits().get(direction) + "\n");
                 }*/
+        		//          ---MODIFICATIONS MADE HERE FOR CHALLENGE START HERE---
         		for(Location location : locations.values()) {
         			locBW.write(location.getLocationID() + "," + location.getDescription() + "\n");
         			for(String direction : location.getExits().keySet()) {
@@ -48,7 +49,7 @@ public class Locations implements Map<Integer, Location> {
 
     static {
 
-    	//    ---MODIFICATIONS MADE HERE FOR CHALLENGE START HERE---
+    	
         //Scanner scanner = null;
         try(BufferedReader br = new BufferedReader(new FileReader("locations_big.txt"))){
             //scanner = new Scanner(new FileReader("locations.txt"));
