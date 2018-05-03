@@ -2,8 +2,15 @@ package sample;
 
 public class Threading {
 	
-	//Synchronized and Race Conditions
+	//Deadlock, Wait, and Notify
 	public static void main(String[] args) {
+		Message m = new Message();
+		new Thread(new MessageWriter(m)).start();
+		new Thread(new MessageReader(m)).start();
+	}
+	
+	//Synchronized and Race Conditions
+	/*public static void main(String[] args) {
 		
 		SharedThreadObject sho = new SharedThreadObject();
 		
@@ -43,7 +50,7 @@ public class Threading {
 		t1.start();
 		t2.start();
 		
-	}
+	}*/
 	
 	//Basic threading, joins, sleep
 	/*public static void main(String[] args) {
