@@ -1,8 +1,52 @@
 package sample;
 
 public class Threading {
-
+	
+	//Synchronized and Race Conditions
 	public static void main(String[] args) {
+		
+		SharedThreadObject sho = new SharedThreadObject();
+		
+		Thread t1 = new Thread() {
+			private SharedThreadObject tsho = sho;
+			
+			@Override
+			public void run() {
+				int i = 5;
+				while(i >= 0) {
+					tsho.setValue(i);
+					tsho.printValue();
+					
+					i--;
+				}
+			}
+			
+		};
+		t1.setName("t1");
+		
+		Thread t2 = new Thread() {
+			private SharedThreadObject tsho = sho;
+			
+			@Override
+			public void run() {
+				int i = 5;
+				while(i >= 0) {
+					tsho.setValue(i);
+					tsho.printValue();
+					i--;
+				}
+			}
+			
+		};
+		t2.setName("t2");
+		
+		t1.start();
+		t2.start();
+		
+	}
+	
+	//Basic threading, joins, sleep
+	/*public static void main(String[] args) {
 		System.out.println("-This is the main thread.");
 
 		new NamedExtendThread().start();
@@ -39,6 +83,6 @@ public class Threading {
 		}).start();
 		
 		System.out.println("-And the main thread is done.");
-	}
+	}*/
 
 }
