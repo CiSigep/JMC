@@ -53,6 +53,22 @@ public class Music {
 		for(SongArtist s : sa)
 			System.out.println("Artist: " + s.getArtistName() + " Album: " + s.getAlbumName() + " Track: " + s.getTrack());
 		
+		ds.queryMetadata("songs");
+		
+		System.out.println("Record Count: " + ds.getRecordCount("songs"));
+		
+		List<SongArtist> sas = ds.queryArtistListView("Go Your Own Way");
+		
+		if(sas == null) {
+			System.err.println("No Song Artist Data.");
+			return;
+		}
+		
+		for(SongArtist s : sas)
+			System.out.println("Artist: " + s.getArtistName() + " Album: " + s.getAlbumName() + " Track: " + s.getTrack());
+		
+		
+		ds.insertSong("Touch of Grey", "Grateful Dead", "In The Dark", 1);
 		ds.close();
 	}
 
